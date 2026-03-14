@@ -12,5 +12,12 @@ def emotion_detector(text_to_analyse):
     # return formatted_response
     formatted_response = formatted_data['emotionPredictions'][0]['emotion']
     max_emotion_score = max(formatted_data['emotionPredictions'][0]['emotion'].values())
-    formatted_response['dominant_emotion'] = max_emotion_score
-    return formatted_response
+
+    temp_data = {}
+
+    for emotion, score in formatted_data['emotionPredictions'][0]['emotion'].items():
+        if ( score ==  max_emotion_score):
+            temp_data['dominant_emotion'] = emotion
+            
+    
+    return formatted_response | temp_data
